@@ -1,7 +1,9 @@
 package com.example.service;
 import com.example.entity.Account;
 import com.example.repository.AccountRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AccountService{
   private final AccountRepository accountRepository;
 
