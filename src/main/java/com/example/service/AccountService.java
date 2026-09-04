@@ -14,7 +14,7 @@ public class AccountService{
   public Account registerAccount(Account account){
     if(account.getUsername().isBlank() || account.getPassword().length() < 4)
       throw new IllegalArgumentException();
-    if(accountRepository.accountExists(account.getUsername()) == false)
+    if(accountRepository.existsByUsername(account.getUsername()) == false)
       throw new IllegalStateException();
     return accountRepository.save(account);
   }
