@@ -1,4 +1,13 @@
 package com.example.controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import com.example.entity.Account;
+import com.example.entity.Message;
+import com.example.service.AccountService;
+import com.example.service.MessageService;
 
 
 /**
@@ -7,6 +16,26 @@ package com.example.controller;
  * where applicable as well as the @ResponseBody and @PathVariable annotations. You should
  * refer to prior mini-project labs and lecture materials for guidance on how a controller may be built.
  */
-public class SocialMediaController {
 
+@RestController
+public class SocialMediaController {
+  private AccountService accountService;
+  private MessageService messageService;
+
+  public SocialMediaController(AccountService accountService, MessageService messageService){
+    this.accountService = accountService;
+    this.messageService = messageService;
+  }
+
+  @PostMapping("/register")
+  public ResponseEntity<Account> registerAccount(@RequestBody Account account){
+    try{
+      Account registeredAccount = accountService.registerAccount(account);
+      return ResponseEntity.ok(registeredAccount);
+    } catch(IllegalStateException e){
+      return ResponseEntity.status(HttpStatus.CONFLICT).build();
+    } catch(IllegalArgumentException e){
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+  }
 }
