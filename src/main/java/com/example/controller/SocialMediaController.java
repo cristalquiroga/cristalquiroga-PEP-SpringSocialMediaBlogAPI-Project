@@ -38,4 +38,14 @@ public class SocialMediaController {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
   }
+
+  @PostMapping("/login")
+  public ResponseEntity<Account> login(@RequestBody Account account){
+    try{
+      Account loginAccount = accountService.login(account);
+      return ResponseEntity.ok(loginAccount);
+    } catch(IllegalArgumentException e){
+      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
+  }
 }

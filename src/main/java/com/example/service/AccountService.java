@@ -18,4 +18,10 @@ public class AccountService{
       throw new IllegalStateException();
     return accountRepository.save(account);
   }
+
+  public Account login(Account account){
+    if(!accountRepository.existsByUsernameAndPassword(account.getUsername(), account.getPassword()))
+      throw new IllegalArgumentException();
+    return accountRepository.findById(account.getAccountId()).get();
+  }
 }
