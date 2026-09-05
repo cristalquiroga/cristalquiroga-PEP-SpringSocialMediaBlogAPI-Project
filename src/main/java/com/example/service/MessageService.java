@@ -34,4 +34,14 @@ public class MessageService {
     }
     return false;
   }
+
+  public void updateMessage(Integer messageId, String messageText){
+    Optional<Message> optionalMessage = messageRepository.findById(messageId);
+    if(optionalMessage.isEmpty() == false){
+      Message message = messageRepository.findById(messageId).get();
+      if(message.getMessageText().isBlank() || message.getMessageText().length() > 255)
+        throw new IllegalArgumentException();
+    }
+    throw new IllegalArgumentException();
+  }
 }
