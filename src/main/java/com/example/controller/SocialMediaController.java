@@ -1,4 +1,5 @@
 package com.example.controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,6 +9,7 @@ import com.example.entity.Account;
 import com.example.entity.Message;
 import com.example.service.AccountService;
 import com.example.service.MessageService;
+import java.util.List;
 
 
 /**
@@ -57,5 +59,11 @@ public class SocialMediaController {
     } catch(IllegalArgumentException e){
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
+  }
+
+  @GetMapping("/messages")
+  public ResponseEntity<List<Message>> getAllMessages(){
+    List<Message> messageList = messageService.getAllMessages();
+    return ResponseEntity.ok(messageList);
   }
 }
