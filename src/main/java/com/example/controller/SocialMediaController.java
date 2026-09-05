@@ -90,10 +90,9 @@ public class SocialMediaController {
   public ResponseEntity<Integer> updateMessage(@PathVariable Integer messageId, String messageText){
     try{
       messageService.updateMessage(messageId, messageText);
-    }
-    if (exists == true)
       return ResponseEntity.ok(1);
-    else
-      return ResponseEntity.ok().build();
+    } catch (IllegalArgumentException e){
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
   }
 }

@@ -39,9 +39,10 @@ public class MessageService {
     Optional<Message> optionalMessage = messageRepository.findById(messageId);
     if(optionalMessage.isEmpty() == false){
       Message message = messageRepository.findById(messageId).get();
-      if(message.getMessageText().isBlank() || message.getMessageText().length() > 255)
+      if(messageText.isBlank() || messageText.length() > 255)
         throw new IllegalArgumentException();
-      message
+      message.setMessageText(messageText);
+      messageRepository.save(message);
     }
     throw new IllegalArgumentException();
   }
