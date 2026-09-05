@@ -1,4 +1,5 @@
 package com.example.controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -73,5 +74,14 @@ public class SocialMediaController {
   public ResponseEntity<Message> getMessage(@PathVariable Integer messageId){
     Optional<Message> message = messageService.getMessage(messageId);
     return ResponseEntity.ok(message.orElse(null));
+  }
+
+  @DeleteMapping("/messages/{messageId}")
+  public ResponseEntity<Integer> deleteMessage(@PathVariable Integer messageId){
+    boolean exists = messageService.deleteMessage(messageId);
+    if (exists == true)
+      return ResponseEntity.ok(1);
+    else
+      return ResponseEntity.ok().build();
   }
 }
