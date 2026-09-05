@@ -49,7 +49,7 @@ public class SocialMediaController {
     }
   }
 
-  @PostMapping("/message")
+  @PostMapping("/messages")
   public ResponseEntity<Message> createMessage(@RequestBody Message message){
     try{
       Message createdMessage = messageService.createMessage(message);
