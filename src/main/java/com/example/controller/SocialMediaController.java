@@ -48,4 +48,14 @@ public class SocialMediaController {
       return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
   }
+
+  @PostMapping("/message")
+  public ResponseEntity<Message> createMessage(@RequestBody Message message){
+    try{
+      Message createdMessage = messageService.createMessage(message);
+      return ResponseEntity.ok(createdMessage);
+    } catch(IllegalArgumentException e){
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+  }
 }
