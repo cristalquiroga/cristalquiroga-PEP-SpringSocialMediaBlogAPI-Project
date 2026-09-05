@@ -38,7 +38,7 @@ public class MessageService {
   public void updateMessage(Integer messageId, String messageText){
     Optional<Message> optionalMessage = messageRepository.findById(messageId);
     if(optionalMessage.isEmpty() == false){
-      Message message = messageRepository.findById(messageId).get();
+      Message message = optionalMessage.get();
       if(messageText.isBlank() || messageText.length() > 255)
         throw new IllegalArgumentException();
       message.setMessageText(messageText);
