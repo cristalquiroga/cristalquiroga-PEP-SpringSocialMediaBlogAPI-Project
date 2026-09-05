@@ -95,7 +95,7 @@ public class SocialMediaController {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
   }
-  @GetMapping("/account/{messageId}/messages")
+  @GetMapping("/accounts/{messageId}/messages")
   public ResponseEntity<List<Message>> getAllMessagesByPostedBy(@PathVariable Integer messageId){
     List<Message> messageList = messageService.getAllMessagesByPostedBy(messageId);
     return ResponseEntity.ok(messageList);
