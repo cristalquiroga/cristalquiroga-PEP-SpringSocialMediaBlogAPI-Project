@@ -43,6 +43,7 @@ public class MessageService {
         throw new IllegalArgumentException();
       message.setMessageText(messageText);
       messageRepository.save(message);
+      return;
     }
     throw new IllegalArgumentException();
   }
