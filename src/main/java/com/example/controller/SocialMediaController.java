@@ -87,9 +87,9 @@ public class SocialMediaController {
   }
 
   @PatchMapping("/messages/{messageId}")
-  public ResponseEntity<Integer> updateMessage(@PathVariable Integer messageId, @RequestBody String messageText){
+  public ResponseEntity<Integer> updateMessage(@PathVariable Integer messageId, @RequestBody Message message){
     try{
-      messageService.updateMessage(messageId, messageText);
+      messageService.updateMessage(messageId, message.getMessageText());
       return ResponseEntity.ok(1);
     } catch (IllegalArgumentException e){
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
