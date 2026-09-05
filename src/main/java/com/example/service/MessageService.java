@@ -47,4 +47,8 @@ public class MessageService {
     }
     throw new IllegalArgumentException();
   }
+
+  public List<Message> getAllMessagesByPostedBy(Integer postedBy){
+    return messageRepository.findByPostedBy(postedBy);
+  }
 }
