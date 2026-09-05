@@ -41,6 +41,7 @@ public class MessageService {
       Message message = messageRepository.findById(messageId).get();
       if(message.getMessageText().isBlank() || message.getMessageText().length() > 255)
         throw new IllegalArgumentException();
+      message
     }
     throw new IllegalArgumentException();
   }
