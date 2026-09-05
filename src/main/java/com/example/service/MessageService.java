@@ -3,6 +3,7 @@ import com.example.entity.Message;
 import com.example.repository.MessageRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MessageService {
@@ -20,5 +21,9 @@ public class MessageService {
 
   public List<Message> getAllMessages(){
     return messageRepository.findAll();
+  }
+
+  public Optional<Message> getMessage(Integer messageId){
+    return messageRepository.findById(messageId);
   }
 }

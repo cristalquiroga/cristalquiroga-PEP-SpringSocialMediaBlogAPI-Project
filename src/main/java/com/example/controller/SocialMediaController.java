@@ -1,5 +1,6 @@
 package com.example.controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +11,7 @@ import com.example.entity.Message;
 import com.example.service.AccountService;
 import com.example.service.MessageService;
 import java.util.List;
+import java.util.Optional;
 
 
 /**
@@ -65,5 +67,11 @@ public class SocialMediaController {
   public ResponseEntity<List<Message>> getAllMessages(){
     List<Message> messageList = messageService.getAllMessages();
     return ResponseEntity.ok(messageList);
+  }
+
+  @GetMapping("/messages/{messageId}")
+  public ResponseEntity<Message> getMessage(@PathVariable Integer messageId){
+    Optional<Message> message = messageService.getMessage(messageId);
+    return ResponseEntity.ok(message.orElse(null));
   }
 }
