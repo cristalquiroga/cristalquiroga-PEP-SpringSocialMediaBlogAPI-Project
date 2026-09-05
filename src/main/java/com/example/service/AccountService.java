@@ -22,6 +22,6 @@ public class AccountService{
   public Account login(Account account){
     if(!accountRepository.existsByUsernameAndPassword(account.getUsername(), account.getPassword()))
       throw new IllegalArgumentException();
-    return accountRepository.findById(account.getAccountId()).get();
+    return accountRepository.findByUsernameAndPassword(account.getUsername(), account.getPassword());
   }
 }
